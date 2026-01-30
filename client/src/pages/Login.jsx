@@ -20,21 +20,45 @@ const Login = () => {
     });
   }
 
+  // async function submitHandler(e) {
+  //   e.preventDefault();
+  //   setError("");
+
+  //   try {
+  //     const data = await loginUser(formData);
+  //     login(data);
+
+  //     // Redirect based on role
+  //     if (data.user.role === "admin") {
+  //       navigate("/admin");
+  //     } else {
+  //       navigate("/");
+  //     }
+  //   } catch (err) {
+  //     setError("Invalid email or password");
+  //   }
+  // }
   async function submitHandler(e) {
     e.preventDefault();
     setError("");
 
     try {
       const data = await loginUser(formData);
+
+      console.log("LOGIN RESPONSE 👉", data);
+      console.log("USER ROLE 👉", data?.user?.role);
+
       login(data);
 
-      // Redirect based on role
       if (data.user.role === "admin") {
+        console.log("REDIRECTING TO /admin");
         navigate("/admin");
       } else {
+        console.log("REDIRECTING TO /");
         navigate("/");
       }
     } catch (err) {
+      console.log("LOGIN ERROR 👉", err);
       setError("Invalid email or password");
     }
   }
