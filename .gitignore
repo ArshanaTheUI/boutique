@@ -1,0 +1,12 @@
+# Client
+client/node_modules
+client/dist
+client/build
+client/.env
+
+# Server
+server/node_modules
+server/.env
+
+# Common
+.env
