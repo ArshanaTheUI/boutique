@@ -1,31 +1,10 @@
-// // App.jsx
-// import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import Home from "./pages/Home";
-// import Login from "./pages/Login";
-// import Register from "./pages/Register";
-// import AdminDashboard from "./admin/AdminDashboard";
-
-// import PrivateRoute from "./routes/PrivateRoute";
-// import AdminRoute from "./routes/AdminRoute";
-// function App() {
-//   return (
-//     <BrowserRouter>
-//       <Routes>
-//         <Route path="/" element={<Home />} />
-//         <Route path="/login" element={<Login />} />
-//         <Route path="/register" element={<Register />} />
-//         <Route path="/admin" element={<AdminDashboard />} />
-//       </Routes>
-//     </BrowserRouter>
-//   );
-// }
-
-// export default App;
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import AdminDashboard from "./admin/AdminDashboard";
+import ProductList from "./admin/ProductList";
+import AddProduct from "./admin/AddProduct";
 
 import PrivateRoute from "./routes/PrivateRoute";
 import AdminRoute from "./routes/AdminRoute";
@@ -47,12 +26,30 @@ function App() {
           }
         />
 
-        {/* Admin protected route */}
+        {/* Admin protected routes */}
         <Route
           path="/admin"
           element={
             <AdminRoute>
               <AdminDashboard />
+            </AdminRoute>
+          }
+        />
+
+        <Route
+          path="/admin/add-product"
+          element={
+            <AdminRoute>
+              <AddProduct />
+            </AdminRoute>
+          }
+        />
+
+        <Route
+          path="/admin/products"
+          element={
+            <AdminRoute>
+              <ProductList />
             </AdminRoute>
           }
         />

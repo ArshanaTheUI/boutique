@@ -4,6 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 import authRoutes from "./routes/authRoutes.js";
+import productRoutes from "./routes/productRoutes.js";
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ mongoose
   .catch((err) => console.log(err));
 
 app.use("/api/auth", authRoutes);
+app.use("/api/products", productRoutes);
 
 app.listen(5000, () => {
   console.log("Server running on port 5000");
