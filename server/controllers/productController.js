@@ -22,12 +22,46 @@ export const addProduct = async (req, res) => {
   }
 };
 
+// UPDATE PRODUCT
+export const updateProduct = async (req, res) => {
+  try {
+    const updated = await Product.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+
+    if (!updated) {
+      return res.status(404).json("Product not found");
+    }
+
+    res.json(updated);
+  } catch (err) {
+    res.status(500).json("Failed to update product");
+  }
+};
+
+// DELETE PRODUCT
+export const deleteProduct = async (req, res) => {
+  try {
+    const deleted = await Product.findByIdAndDelete(req.params.id);
+
+    if (!deleted) {
+      return res.status(404).json("Product not found");
+    }
+
+    res.json("Product deleted");
+  } catch (err) {
+    res.status(500).json("Failed to delete product");
+  }
+};
+
 // GET ALL PRODUCTS (USER + ADMIN)
+
 export const getProducts = async (req, res) => {
   try {
     const products = await Product.find();
     res.json(products);
   } catch (err) {
+    console.error("❌ GET PRODUCTS ERROR:", err); // 👈 ADD THIS
     res.status(500).json("Failed to fetch products");
   }
 };
